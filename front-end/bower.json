@@ -1,0 +1,17 @@
+{
+  "name": "expenses-front-end",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Robin-Hoodie/expenses",
+  "authors": [
+    "RobinHellemans <Robin.Hellemans@dhl.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./bower",
+    "test",
+    "tests"
+  ]
+}
