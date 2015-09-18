@@ -5,11 +5,13 @@
 
     angular.module('app.core').config(configFn);
 
-    configFn.$inject = ['$stateProvider', '$locationProvider']
+    configFn.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider']
 
-    function configFn($stateProvider, $locationProvider) {
+    function configFn($stateProvider, $locationProvider, $urlRouterProvider) {
 
         $locationProvider.html5Mode(true);
+
+        $urlRouterProvider.otherwise('/');
 
         $stateProvider.state('home', {
             url: '/',

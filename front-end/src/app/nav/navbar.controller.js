@@ -7,23 +7,18 @@
     angular.module('app.core')
         .controller('navbarCtrl', navbarCtrl);
 
-    navbarCtrl.$inject = ['$location', 'userService'];
+    navbarCtrl.$inject = ['userService'];
 
-    function navbarCtrl($location, userService) {
+    function navbarCtrl(userService) {
 
         var vm = this;
 
         vm.init = init;
-        vm.isActive = isActive;
+
+        init();
 
         function init () {
             vm.isLoggedIn = userService.isLoggedIn();
-        }
-
-        function isActive(state) {
-            if($location.state() === state)
-                return true;
-            return false;
         }
 
     }

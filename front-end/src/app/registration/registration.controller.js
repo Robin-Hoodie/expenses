@@ -11,5 +11,14 @@
 
     function registrationCtrl () {
         var vm = this;
+
+        vm.init = init;
+
+        init();
+
+        function init () {
+            vm.emailPattern =  /^(\w|\.)+@\w+\.\w{2,}(\.\w{2,})?$/i;
+            vm.passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{5,}$/;
+        }
     }
 })();

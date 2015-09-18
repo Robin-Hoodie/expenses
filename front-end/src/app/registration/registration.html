@@ -1,1 +1,68 @@
-Hello world
+<h1 class="page-title">Register</h1>
+<form role="form" name="registerForm" novalidate class="form-horizontal">
+    <fieldset>
+        <legend>User Info</legend>
+
+        <div class="form-group has-feedback">
+            <label for="username" class="col-sm-3 control-label">* Username (E-mail address)</label>
+
+            <div ng-class="{'has-error': registerForm.username.$touched && registerForm.username.$invalid,
+        'has-success': registerForm.username.$dirty && registerForm.username.$valid}">
+                <div class="col-sm-9">
+                    <input type="email" id="username" name="username" class="form-control" ng-model="vm.user.username"
+                           ng-required ng-pattern="vm.emailPattern"/>
+                    <i ng-show="registerForm.username.$dirty && registerForm.username.$valid"
+                       class="glyphicon glyphicon-ok-circle form-control-feedback"></i>
+                    <i ng-show="registerForm.username.$touched && registerForm.username.$invalid"
+                       class="glyphicon glyphicon-remove-circle form-control-feedback"></i>
+                    <span class="help-block"
+                          ng-show="registerForm.username.$touched && registerForm.username.$error.pattern">E-mail is not valid!</span>
+                    <span class="help-block"
+                          ng-show="registerForm.username.$touched && registerForm.username.$error.required">Username is required!</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group has-feedback">
+            <label for="password" class="col-sm-3 control-label">Password</label>
+
+            <div ng-class="{'has-error': registerForm.password.$touched && registerForm.password.$invalid,
+            'has-success': registerForm.password.$dirty && registerForm.password.$valid}">
+                <div class="col-sm-9">
+                    <input type="password" id="password" name="password" class="form-control" ng-model="user.password"
+                           ng-required ng-pattern="vm.passwordPattern"/>
+                    <i ng-show="registerForm.password.$dirty && registerForm.password.$valid"
+                       class="glyphicon glyphicon-ok-circle form-control-feedback"></i>
+                    <i ng-show="registerForm.password.$touched && registerForm.password.$invalid"
+                       class="glyphicon glyphicon-remove-circle form-control-feedback"></i>
+                    <span class="help-block"
+                          ng-show="registerForm.password.$touched && registerForm.password.$error.pattern">A password needs to be 5 characters long,
+                        contain 1 upper- and lowercase character as well as 1 number.</span>
+                    <span class="help-block"
+                          ng-show="registerForm.password.$touched && registerForm.password.$error.required">Password is required!</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label for="check-password" class="col-sm-3 control-label">Verify Password</label>
+
+            <div ng-class="{'has-error': registerForm.checkPassword.$touched && registerForm.checkPassword.$invalid,
+            'has-success': registerForm.checkPassword.$dirty && registerForm.checkPassword.$valid}">
+                <div class="col-sm-9">
+                    <input type="password" id="check-password" name="check-password" class="form-control" ng-model="user.checkPassword"
+                           ng-required check-password="user.password"/>
+                    <i ng-show="registerForm.checkPassword.$dirty && registerForm.checkPassword.$valid"
+                       class="glyphicon glyphicon-ok-circle form-control-feedback"></i>
+                    <i ng-show="registerForm.checkPassword.$touched && registerForm.checkPassword.$invalid"
+                       class="glyphicon glyphicon-remove-circle form-control-feedback"></i>
+                    <span class="help-block"
+                          ng-show="registerForm.checkPassword.$touched && registerForm.checkPassword.$error.pattern">A password needs to be 5 characters long,
+                        contain 1 upper- and lowercase character as well as 1 number.</span>
+                    <span class="help-block"
+                          ng-show="registerForm.checkPassword.$touched && registerForm.checkPassword.$error.required">Password is required!</span>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</form>
