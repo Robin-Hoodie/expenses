@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app.core">
 <head>
-  <base href="/">
-  <meta charset="UTF-8">
-  <title>Expenses</title>
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
-  <link rel="stylesheet" href="https://bootswatch.com/darkly/bootstrap.min.css"/>
+    <base href="/">
+    <meta charset="UTF-8">
+    <title>Expenses</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="https://bootswatch.com/darkly/bootstrap.min.css"/>
+    <link rel="stylesheet" href="tmp/styles.css"/>
 </head>
 <body class="container">
+<ng-include src="'nav/navbar.html'"></ng-include>
 <div ui-view></div>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="app.module.js"></script>
+<script src="registration/registration.controller.js"></script>
+<script src="nav/navbar.controller.js"></script>
+<script src="user/user.service.js"></script>
 </body>
 </html>
