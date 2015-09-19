@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('app.core', ['ui.router']);
+    angular.module('app.core', ['ui.router', 'ui.bootstrap']);
 
     angular.module('app.core').config(configFn);
 

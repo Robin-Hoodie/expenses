@@ -1,67 +1,127 @@
 <h1 class="page-title">Register</h1>
-<form role="form" name="registerForm" novalidate class="form-horizontal">
+<form role="form" name="vm.registerForm" novalidate class="form-horizontal">
     <fieldset>
         <legend>User Info</legend>
 
         <div class="form-group has-feedback">
             <label for="username" class="col-sm-3 control-label">* Username (E-mail address)</label>
 
-            <div ng-class="{'has-error': registerForm.username.$touched && registerForm.username.$invalid,
-        'has-success': registerForm.username.$dirty && registerForm.username.$valid}">
+            <div ng-class="{ 'has-success': vm.registerForm.username.$valid,
+            'has-error': vm.registerForm.username.$touched && vm.registerForm.username.$invalid}">
                 <div class="col-sm-9">
                     <input type="email" id="username" name="username" class="form-control" ng-model="vm.user.username"
-                           ng-required ng-pattern="vm.emailPattern"/>
-                    <i ng-show="registerForm.username.$dirty && registerForm.username.$valid"
+                           ng-required="true" ng-pattern="vm.emailPattern"/>
+                    <i ng-show="vm.registerForm.username.$valid"
                        class="glyphicon glyphicon-ok-circle form-control-feedback"></i>
-                    <i ng-show="registerForm.username.$touched && registerForm.username.$invalid"
+                    <i ng-show="vm.registerForm.username.$touched && vm.registerForm.username.$invalid"
                        class="glyphicon glyphicon-remove-circle form-control-feedback"></i>
                     <span class="help-block"
-                          ng-show="registerForm.username.$touched && registerForm.username.$error.pattern">E-mail is not valid!</span>
+                          ng-show="vm.registerForm.username.$touched && vm.registerForm.username.$error.pattern">E-mail is not valid!</span>
                     <span class="help-block"
-                          ng-show="registerForm.username.$touched && registerForm.username.$error.required">Username is required!</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="form-group has-feedback">
-            <label for="password" class="col-sm-3 control-label">Password</label>
-
-            <div ng-class="{'has-error': registerForm.password.$touched && registerForm.password.$invalid,
-            'has-success': registerForm.password.$dirty && registerForm.password.$valid}">
-                <div class="col-sm-9">
-                    <input type="password" id="password" name="password" class="form-control" ng-model="user.password"
-                           ng-required ng-pattern="vm.passwordPattern"/>
-                    <i ng-show="registerForm.password.$dirty && registerForm.password.$valid"
-                       class="glyphicon glyphicon-ok-circle form-control-feedback"></i>
-                    <i ng-show="registerForm.password.$touched && registerForm.password.$invalid"
-                       class="glyphicon glyphicon-remove-circle form-control-feedback"></i>
-                    <span class="help-block"
-                          ng-show="registerForm.password.$touched && registerForm.password.$error.pattern">A password needs to be 5 characters long,
-                        contain 1 upper- and lowercase character as well as 1 number.</span>
-                    <span class="help-block"
-                          ng-show="registerForm.password.$touched && registerForm.password.$error.required">Password is required!</span>
+                          ng-show="vm.registerForm.username.$touched && vm.registerForm.username.$error.required">Username is required!</span>
                 </div>
             </div>
         </div>
 
         <div class="form-group has-feedback">
-            <label for="check-password" class="col-sm-3 control-label">Verify Password</label>
+            <label for="password" class="col-sm-3 control-label">* Password</label>
 
-            <div ng-class="{'has-error': registerForm.checkPassword.$touched && registerForm.checkPassword.$invalid,
-            'has-success': registerForm.checkPassword.$dirty && registerForm.checkPassword.$valid}">
+            <div ng-class="{'has-success': vm.registerForm.password.$valid,
+            'has-error': vm.registerForm.password.$touched && vm.registerForm.password.$invalid}">
                 <div class="col-sm-9">
-                    <input type="password" id="check-password" name="check-password" class="form-control" ng-model="user.checkPassword"
-                           ng-required check-password="user.password"/>
-                    <i ng-show="registerForm.checkPassword.$dirty && registerForm.checkPassword.$valid"
+                    <input type="password" id="password" name="password" class="form-control"
+                           ng-model="vm.user.password"
+                           ng-required="true" ng-pattern="vm.passwordPattern"/>
+                    <i ng-show="vm.registerForm.password.$valid"
                        class="glyphicon glyphicon-ok-circle form-control-feedback"></i>
-                    <i ng-show="registerForm.checkPassword.$touched && registerForm.checkPassword.$invalid"
+                    <i ng-show="vm.registerForm.password.$touched && vm.registerForm.password.$invalid"
                        class="glyphicon glyphicon-remove-circle form-control-feedback"></i>
                     <span class="help-block"
-                          ng-show="registerForm.checkPassword.$touched && registerForm.checkPassword.$error.pattern">A password needs to be 5 characters long,
+                          ng-show="vm.registerForm.password.$touched && vm.registerForm.password.$error.pattern">A password needs to be 5-20 characters long,
                         contain 1 upper- and lowercase character as well as 1 number.</span>
                     <span class="help-block"
-                          ng-show="registerForm.checkPassword.$touched && registerForm.checkPassword.$error.required">Password is required!</span>
+                          ng-show="vm.registerForm.password.$touched && vm.registerForm.password.$error.required">Password is required!</span>
                 </div>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback">
+            <label for="passwordVerification" class="col-sm-3 control-label">* Verify Password</label>
+
+            <div ng-class="{'has-success': vm.registerForm.passwordVerification.$valid,
+            'has-error': vm.registerForm.password.$valid && vm.registerForm.passwordVerification.$dirty && vm.registerForm.passwordVerification.$invalid}">
+                <div class="col-sm-9">
+                    <input type="password" id="passwordVerification" name="passwordVerification" class="form-control"
+                           ng-model="vm.user.passwordVerification" verify-password="{{vm.user.password}}"/>
+                    <i ng-show="vm.registerForm.passwordVerification.$valid"
+                       class="glyphicon glyphicon-ok-circle form-control-feedback"></i>
+                    <i ng-show="vm.registerForm.password.$valid && vm.registerForm.passwordVerification.$dirty && vm.registerForm.passwordVerification.$invalid"
+                       class="glyphicon glyphicon-remove-circle form-control-feedback"></i>
+                    <span class="help-block"
+                          ng-show="vm.registerForm.password.$valid && vm.registerForm.passwordVerification.$dirty &&
+                          vm.registerForm.passwordVerification.$error.noMatch">
+                      Password doesn't match!</span>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Basic Information</legend>
+        <div class="form-group has-feedback" ng-class="{'has-success': vm.registerForm.firstName.$valid,
+        'has-error': vm.registerForm.firstName.$touched && vm.registerForm.firstName.$invalid}">
+            <label for="firstName" class="col-sm-3 control-label">* First name</label>
+
+            <div class="col-sm-6">
+                <input type="text" id="firstName" name="firstName" class="form-control" ng-model="vm.user.firstName"
+                       ng-required="true"/>
+                <i ng-show="vm.registerForm.firstName.$valid"
+                   class="glyphicon glyphicon-ok-circle form-control-feedback"></i>
+                <i ng-show="vm.registerForm.firstName.$touched && vm.registerForm.firstName.$invalid"
+                   class="glyphicon glyphicon-remove-circle form-control-feedback"></i>
+                <span ng-show="vm.registerForm.firstName.$touched && vm.registerForm.firstName.$error.required"
+                      class="help-block">First name is required!</span>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback" ng-class="{'has-success': vm.registerForm.lastName.$valid,
+        'has-error': vm.registerForm.lastName.$touched && vm.registerForm.lastName.$invalid}">
+            <label for="firstName" class="col-sm-3 control-label">* Last name</label>
+
+            <div class="col-sm-6">
+                <input type="text" id="lastName" name="lastName" class="form-control" ng-model="vm.user.lastName"
+                       ng-required="true"/>
+                <i ng-show="vm.registerForm.lastName.$valid"
+                   class="glyphicon glyphicon-ok-circle form-control-feedback"></i>
+                <i ng-show="vm.registerForm.lastName.$touched && vm.registerForm.lastName.$invalid"
+                   class="glyphicon glyphicon-remove-circle form-control-feedback"></i>
+                <span ng-show="vm.registerForm.lastName.$touched && vm.registerForm.lastName.$error.required"
+                      class="help-block">Last name is required!</span>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback" ng-class="{'has-success' : vm.registerForm.birthDate.$valid,
+        'has-error':  vm.registerForm.birthDate.$dirty && vm.registerForm.birthDate.$invalid}">
+            <label for="birthDate" class="col-sm-3 control-label">* Birth date</label>
+
+            <div class="col-sm-3">
+                <p class="input-group">
+                    <input type="text" id="birthDate" max-date="vm.maxDate" is-open="vm.opened"
+                           datepicker-popup="dd-MM-yy" datepicker-options="vm.datePickerOptions"
+                           name="birthDate" class="form-control" ng-required="true" ng-model="vm.user.birthDate"/>
+                    <i ng-show="vm.registerForm.birthDate.$dirty && vm.registerForm.birthDate.$invalid"
+                       class="glyphicon glyphicon-remove-circle form-control-feedback" style="margin-right:20px"></i>
+                    <i ng-show="vm.registerForm.birthDate.$valid"
+                       class="glyphicon glyphicon-ok-circle form-control-feedback" style="margin-right:20px"></i>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.open($event)">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </p>
+                <span class="help-block"
+                      ng-show="vm.registerForm.birthDate.$dirty && vm.registerForm.birthDate.$error.required">Birth date is required</span>
+                <span class="help-block"
+                      ng-show="vm.registerForm.birthDate.$dirty && vm.registerForm.birthDate.$error.date">Birth date has to be in the past</span>
             </div>
         </div>
     </fieldset>
