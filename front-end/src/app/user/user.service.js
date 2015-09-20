@@ -11,8 +11,16 @@
 
     function userService() {
 
+        var users = [];
+
         return {
-            isLoggedIn: isLoggedIn
+            register: register,
+            isLoggedIn: isLoggedIn,
+            users: users
+        }
+
+        function register (user) {
+            users.push(user);
         }
 
         function isLoggedIn() {

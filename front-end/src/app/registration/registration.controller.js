@@ -7,13 +7,15 @@
     angular.module('app.core')
         .controller('registrationCtrl', registrationCtrl);
 
-    registrationCtrl.$inject = [];
+    registrationCtrl.$inject = ['userService'];
 
-    function registrationCtrl () {
+    function registrationCtrl (userService) {
         var vm = this;
 
         vm.init = init;
         vm.open = open;
+        vm.register = register;
+        vm.cancel = cancel;
 
         init();
 
@@ -28,6 +30,16 @@
         
         function open () {
             vm.opened = true;
+        }
+
+        function register () {
+            if(vm.registrationForm.$valid)
+                userService.register(vm.user);
+        }
+
+        function cancel () {
+            vm.user = {};
+            vm.registrationForm = {};
         }
     }
 })();

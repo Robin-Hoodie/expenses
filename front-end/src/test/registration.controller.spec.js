@@ -1,10 +1,14 @@
 describe('Testing the registration controller', function () {
-    var _controller_;
+    var _controller_,
+        _userService_;
 
     beforeEach(angular.mock.module('app.core'));
 
-    beforeEach(angular.mock.inject(function ($controller) {
-        _controller_ = $controller('registrationCtrl');
+    beforeEach(angular.mock.inject(function ($controller, userService) {
+        _userService_ = userService;
+        _controller_ = $controller('registrationCtrl', {
+            userService: _userService_
+        });
     }));
 
     describe('testing email pattern', function () {
@@ -69,4 +73,30 @@ describe('Testing the registration controller', function () {
             expect(_controller_.opened).toBe(true);
         });
     });
+
+    describe('testing "vm.cancel"', function () {
+        it('should set "vm.user" and "vm.registrationForm" to empty objects', function () {
+            _controller_.cancel();
+            expect(_controller_.user).toEqual({});
+            expect(_controller_.registrationForm).toEqual({});
+        });
+    });
+
+    describe('testing "vm.register"', function () {
+        it('should call "userService.registerUser if registrationForm is valid', function () {
+            _controller_.registrationForm = {};
+            _controller_.registrationForm.$valid = true;
+            spyOn(_userService_, 'register');
+            _controller_.register({username: 'Robin'});
+            expect(_userService_.register).toHaveBeenCalled();
+        });
+
+        it('should NOT call "userService.registerUser" if registrationForm is not valid', function () {
+            _controller_.registrationForm = {};
+            _controller_.registrationForm.$valid = false;
+            spyOn(_userService_, 'register');
+            _controller_.register({username: 'Robin'})
+            expect(_userService_.register).not.toHaveBeenCalled();
+        });
+    })
 });
