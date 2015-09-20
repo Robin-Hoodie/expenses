@@ -105,7 +105,7 @@
             <div class="col-sm-3">
                 <p class="input-group">
                     <input type="text" id="birthDate" max-date="vm.maxDate" is-open="vm.opened"
-                           datepicker-popup="dd-MM-yy" datepicker-options="vm.datePickerOptions"
+                           datepicker-popup="dd-MM-yyyy" datepicker-options="vm.datePickerOptions"
                            name="birthDate" class="form-control" required ng-model="vm.user.birthDate" past-date/>
                     <i ng-show="vm.registrationForm.birthDate.$dirty && vm.registrationForm.birthDate.$invalid"
                        class="glyphicon glyphicon-remove-circle form-control-feedback" style="margin-right:20px"></i>
@@ -128,7 +128,7 @@
     </fieldset>
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-9">
-            <input type="submit" value="Register" class="btn btn-primary col-sm-offset-3" ng-click="vm.submit()"/>
+            <input type="submit" value="Register" class="btn btn-primary col-sm-offset-3" ng-click="vm.submit()" ng-disabled="vm.registrationForm.$invalid"/>
             <input type="button" value="Cancel" class="btn btn-danger" ng-click="vm.cancel()"/>
         </div>
     </div>

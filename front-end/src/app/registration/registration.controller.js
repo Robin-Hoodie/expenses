@@ -7,9 +7,9 @@
     angular.module('app.core')
         .controller('registrationCtrl', registrationCtrl);
 
-    registrationCtrl.$inject = ['userService'];
+    registrationCtrl.$inject = ['userService', '$state', '$window', 'authenticationService'];
 
-    function registrationCtrl (userService) {
+    function registrationCtrl (userService, $state, $window, authenticationService) {
         var vm = this;
 
         vm.init = init;
@@ -33,13 +33,14 @@
         }
 
         function register () {
-            if(vm.registrationForm.$valid)
+            if(vm.registrationForm.$valid) {
                 userService.register(vm.user);
+                $state.go('expenses.dashboard', {user: authenticationService.getCurrentUser()});
+            }
         }
 
         function cancel () {
-            vm.user = {};
-            vm.registrationForm = {};
+            $window.history.back();
         }
     }
 })();

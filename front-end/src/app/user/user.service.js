@@ -7,24 +7,24 @@
     angular.module('app.core')
         .factory('userService', userService);
 
-    userService.$inject = [];
+    userService.$inject = ['authenticationService'];
 
-    function userService() {
+    function userService(authenticationService) {
 
         var users = [];
 
         return {
             register: register,
-            isLoggedIn: isLoggedIn,
-            users: users
+            getUsers: getUsers
         }
 
         function register (user) {
             users.push(user);
+            authenticationService.login(user);
         }
 
-        function isLoggedIn() {
-            return false;
+        function getUsers () {
+            return users;
         }
 
     }

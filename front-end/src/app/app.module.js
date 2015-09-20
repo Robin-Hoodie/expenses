@@ -21,6 +21,13 @@
             templateUrl: 'registration/registration.html',
             controller: 'registrationCtrl',
             controllerAs: 'vm'
+        }).state('expenses', {
+            url: '/expenses',
+            abstract: true,
+            template: '<ui-view/>'
+        }).state('expenses.dashboard', {
+            url: '/dashboard',
+            templateUrl: 'expenses/dashboard.html'
         });
     }
 

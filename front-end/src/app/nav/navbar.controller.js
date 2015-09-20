@@ -7,9 +7,9 @@
     angular.module('app.core')
         .controller('navbarCtrl', navbarCtrl);
 
-    navbarCtrl.$inject = ['userService'];
+    navbarCtrl.$inject = ['authenticationService'];
 
-    function navbarCtrl(userService) {
+    function navbarCtrl(authenticationService) {
 
         var vm = this;
 
@@ -18,7 +18,7 @@
         init();
 
         function init () {
-            vm.isLoggedIn = userService.isLoggedIn();
+            vm.isLoggedIn = authenticationService.isLoggedIn();
         }
 
     }
