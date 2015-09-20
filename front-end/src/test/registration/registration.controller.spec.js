@@ -81,7 +81,7 @@ describe('Testing the registration controller', function () {
     });
 
     describe('testing "vm.cancel"', function () {
-        it('should go back in history', function () {
+        it('should call "_window_.history.back"', function () {
             spyOn(_window_.history, 'back')
             _controller_.cancel();
             expect(_window_.history.back).toHaveBeenCalled();
