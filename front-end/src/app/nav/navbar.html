@@ -1,0 +1,22 @@
+<nav class="navbar navbar-default navbar-fixed-top" ng-controller="navbarCtrl as vm">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" ng-init="vm.navCollapsed = true" ng-click="vm.navCollapsed = !vm.navCollapsed"
+                    data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span
+                    class="icon-bar"></span></button>
+            <a ui-sref="home" class="navbar-brand">
+                <i class="icon-home"></i>
+                <span>Expenses</span>
+            </a>
+        </div>
+        <div ng-class="{'in': !vm.navCollapsed}" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li ui-sref-active="active" ng-hide="vm.isLoggedIn">
+                    <a ui-sref="registration" data-toggle="collapse" data-target=".navbar-collapse">
+                        <b>Register</b>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
