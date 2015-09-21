@@ -104,9 +104,8 @@
 
             <div class="col-sm-3">
                 <p class="input-group">
-                    <input type="text" id="birthDate" max-date="vm.maxDate" is-open="vm.opened"
-                           datepicker-popup="dd-MM-yyyy" datepicker-options="vm.datePickerOptions"
-                           name="birthDate" class="form-control" required ng-model="vm.user.birthDate" past-date/>
+                    <input type="text" id="birthDate" is-open="vm.opened" datepicker-popup="dd-MM-yyyy" past-date required
+                           name="birthDate" class="form-control" ng-model="vm.user.birthDate" />
                     <i ng-show="vm.registrationForm.birthDate.$dirty && vm.registrationForm.birthDate.$invalid"
                        class="glyphicon glyphicon-remove-circle form-control-feedback date-glyph"></i>
                     <i ng-show="vm.registrationForm.birthDate.$valid"

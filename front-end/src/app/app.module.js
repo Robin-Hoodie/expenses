@@ -5,14 +5,17 @@
 
     angular.module('app.core').config(configFn);
 
-    configFn.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider']
+    configFn.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'datepickerConfig']
 
-    function configFn($stateProvider, $locationProvider, $urlRouterProvider) {
-
+    function configFn($stateProvider, $locationProvider, $urlRouterProvider, datepickerConfig) {
         $locationProvider.html5Mode(true);
-
         $urlRouterProvider.otherwise('/');
+        datepickerConfig.startingDay = 1;
+        datepickerConfig.maxDate = new Date();
 
+        toastr.options.positionClass = 'toast-bottom-right';
+
+        //TODO: Make a real homepage
         $stateProvider.state('home', {
             url: '/',
             templateUrl: 'index.html'
@@ -27,8 +30,12 @@
             template: '<ui-view/>'
         }).state('expenses.dashboard', {
             url: '/dashboard',
-            templateUrl: 'expenses/dashboard.html'
+            templateUrl: 'expenses/dashboard.html',
+            controller: 'expensesDashboardCtrl',
+            controllerAs: 'vm',
+            onEnter: function () {
+                toastr.info('Welcome to your dashboard!')
+            }
         });
     }
-
 })();

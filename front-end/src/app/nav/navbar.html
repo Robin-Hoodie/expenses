@@ -11,12 +11,12 @@
         </div>
         <div ng-class="{'in': !vm.navCollapsed}" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li ui-sref-active="active" ng-hide="vm.isLoggedIn">
+                <li ui-sref-active="active" ng-hide="vm.isLoggedIn()">
                     <a ui-sref="registration" data-toggle="collapse" data-target=".navbar-collapse">
                         <b>Register</b>
                     </a>
                 </li>
-                <li  ng-hide="vm.isLoggedIn">
+                <li  ng-hide="vm.isLoggedIn()">
                     <a data-toggle="collapse" data-target=".navbar-collapse" ng-click="vm.openLoginWindow()" class="hover-hand">
                         <b>Login</b>
                     </a>

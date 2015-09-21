@@ -4,9 +4,9 @@
     angular.module('app.core')
         .controller('loginCtrl', loginCtrl);
 
-    loginCtrl.$inject = ['$modalInstance', '$state', 'loginService'];
+    loginCtrl.$inject = ['$modalInstance', '$state', 'authenticationService'];
 
-    function loginCtrl ($modalInstance, $state, loginService) {
+    function loginCtrl ($modalInstance, $state, authenticationService) {
         var vm = this;
 
         vm.init = init;
@@ -21,7 +21,7 @@
         }
 
         function login () {
-            if(loginService.checkCredentials(vm.user)) {
+            if(authenticationService.login(vm.user)) {
                 $modalInstance.close(true);
                 $state.go('expenses.dashboard');
                 vm.loginError = false;

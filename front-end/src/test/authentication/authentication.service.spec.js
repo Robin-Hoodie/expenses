@@ -8,9 +8,10 @@ describe('Testing authenticationService', function () {
     }));
 
     describe('"login"', function () {
-        it('should set "currentUser" to the passed user object', function () {
+        it('should set "currentUser" to the passed user object and return true', function () {
             _authenticationService_.login({username: 'Robin'});
             expect(_authenticationService_.getCurrentUser()).toEqual({username: 'Robin'});
+            expect(_authenticationService_.login()).toBe(true);
         });
     });
 
