@@ -35,7 +35,16 @@
             controllerAs: 'vm',
             onEnter: function () {
                 toastr.info('Welcome to your dashboard!')
+            },
+            resolve: {
+                expenses: getAllExpenses
             }
         });
+
+        getAllExpenses.$inject = ['expensesService'];
+
+        function getAllExpenses (expensesService) {
+            return expensesService.getAllExpenses();
+        }
     }
 })();

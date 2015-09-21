@@ -1,18 +1,22 @@
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>#</th>
+            <th>Date</th>
             <th>Description</th>
             <th>Category</th>
-            <th>Price</th>
+            <th>Price per unit</th>
+            <th># of units</th>
+            <th>Total price</th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="expense in expenses">
-            <td>{{$index + 1}}</td>
+        <tr ng-repeat="expense in vm.expenses">
+            <td>{{expense.date | date:'dd-MM-yy'}}</td>
             <td>{{expense.description}}</td>
             <td>{{expense.category}}</td>
-            <td>{{expense.price}}</td>
+            <td>{{expense.price | currency:'&euro;'}}</td>
+            <td>{{expense.amount}}</td>
+            <td>{{expense.totalPrice}}</td>
         </tr>
     </tbody>
 </table>

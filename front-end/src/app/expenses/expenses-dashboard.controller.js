@@ -7,11 +7,11 @@
     angular.module('app.core')
         .controller('expensesDashboardCtrl', expensesDashboardCtrl);
 
-    expensesDashboardCtrl.$inject = ['$rootScope'];
+    expensesDashboardCtrl.$inject = ['expenses'];
 
-    function expensesDashboardCtrl ($rootScope) {
+    function expensesDashboardCtrl (expenses) {
         var vm = this;
-
-
+        //TODO: test this resolve
+        vm.expenses = expenses;
     }
 })();
