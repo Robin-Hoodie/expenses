@@ -10,8 +10,6 @@
         var currentUser = {};
 
         return {
-            //exposed this for testing purposes, this is an internal method and should not be used outside this service
-            _checkCredentials_: checkCredentials,
             getCurrentUser: getCurrentUser,
             login: login,
             isLoggedIn: isLoggedIn
