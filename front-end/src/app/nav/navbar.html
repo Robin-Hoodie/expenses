@@ -16,6 +16,11 @@
                         <b>Register</b>
                     </a>
                 </li>
+                <li  ng-hide="vm.isLoggedIn">
+                    <a data-toggle="collapse" data-target=".navbar-collapse" ng-click="vm.openLoginWindow()" class="hover-hand">
+                        <b>Login</b>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -73,16 +73,16 @@ describe('Testing the registration controller', function () {
         });
     });
 
-    describe('testing "vm.open"', function () {
+    describe('"vm.open"', function () {
         it('should set "vm.opened" to true', function () {
             _controller_.open();
             expect(_controller_.opened).toBe(true);
         });
     });
 
-    describe('testing "vm.cancel"', function () {
-        it('should go back in history', function () {
-            spyOn(_window_.history, 'back')
+    describe('"vm.cancel"', function () {
+        it('should call "_window_.history.back"', function () {
+            _window_.history.back = jasmine.createSpy('_window_.history.back')
             _controller_.cancel();
             expect(_window_.history.back).toHaveBeenCalled();
         });
@@ -93,8 +93,8 @@ describe('Testing the registration controller', function () {
         it('should call "userService.registerUser if registrationForm is valid and transition $state to expenses.dashboard', function () {
             _controller_.registrationForm = {};
             _controller_.registrationForm.$valid = true;
-            spyOn(_userService_, 'register');
-            spyOn(_state_, 'go');
+            _userService_.register = jasmine.createSpy('_userService_.register');
+            _state_.go = jasmine.createSpy('_state_.go');
 
             _controller_.register({username: 'Robin'});
             expect(_userService_.register).toHaveBeenCalled();
@@ -104,8 +104,8 @@ describe('Testing the registration controller', function () {
         it('should NOT call "userService.registerUser" or change state if registrationForm is not valid', function () {
             _controller_.registrationForm = {};
             _controller_.registrationForm.$valid = false;
-            spyOn(_userService_, 'register');
-            spyOn(_state_, 'go');
+            _userService_.register = jasmine.createSpy('_userService_.register');
+            _state_.go = jasmine.createSpy('_state_.go');
 
             _controller_.register({username: 'Robin'})
             expect(_userService_.register).not.toHaveBeenCalled();

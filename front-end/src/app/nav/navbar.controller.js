@@ -7,13 +7,14 @@
     angular.module('app.core')
         .controller('navbarCtrl', navbarCtrl);
 
-    navbarCtrl.$inject = ['authenticationService'];
+    navbarCtrl.$inject = ['authenticationService', 'loginService'];
 
-    function navbarCtrl(authenticationService) {
+    function navbarCtrl(authenticationService, loginService) {
 
         var vm = this;
 
         vm.init = init;
+        vm.openLoginWindow = openLoginWindow;
 
         init();
 
@@ -21,5 +22,8 @@
             vm.isLoggedIn = authenticationService.isLoggedIn();
         }
 
+        function openLoginWindow () {
+            loginService.openLoginWindow();
+        }
     }
 })();
