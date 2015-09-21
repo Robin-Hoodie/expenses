@@ -11,9 +11,9 @@ describe('Testing the navbar controller', function () {
         });
     }));
 
-    describe('testing openLoginWindow', function () {
+    describe('openLoginWindow', function () {
         it('should call "userService.loginWindow"', function () {
-            spyOn(_loginService_, 'openLoginWindow');
+            _loginService_.openLoginWindow = jasmine.createSpy('_loginService_.openLoginWindow');
             _controller_.openLoginWindow();
 
             expect(_loginService_.openLoginWindow).toHaveBeenCalled();

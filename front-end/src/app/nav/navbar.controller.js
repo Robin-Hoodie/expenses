@@ -25,6 +25,5 @@
         function openLoginWindow () {
             loginService.openLoginWindow();
         }
-
     }
 })();

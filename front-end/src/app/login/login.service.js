@@ -4,21 +4,25 @@
     angular.module('app.core')
         .factory('loginService', loginService);
 
-    loginService.$inject = ['$modal'];
+    loginService.$inject = ['$modal', 'userService'];
 
-    function loginService ($modal) {
-        var loginInstance;
+    function loginService ($modal, userService) {
 
         return {
-            openLoginWindow: openLoginWindow
+            openLoginWindow: openLoginWindow,
+            checkCredentials: checkCredentials
+        }
+
+        //dummy method, with back-end this will be fully implemented
+        function checkCredentials (user) {
+            return true;
         }
 
         function openLoginWindow () {
-            loginInstance = $modal.open({
+            $modal.open({
                 templateUrl: 'login/login.modal.html',
                 controller: 'loginCtrl',
-                controllerAs: 'vm',
-                size: 'sm'
+                controllerAs: 'vm'
             });
         }
     }

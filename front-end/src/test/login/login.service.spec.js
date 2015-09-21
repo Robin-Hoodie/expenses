@@ -10,11 +10,17 @@ describe('Testing loginService', function () {
         _modal_ = $modal;
     }));
 
-    describe('testing "openLoginWindow"', function () {
+    describe('"openLoginWindow"', function () {
         it('should call "modal.open"', function () {
-            spyOn(_modal_, 'open');
+            _modal_.open = jasmine.createSpy('_modal_.open');
             _loginService_.openLoginWindow();
             expect(_modal_.open).toHaveBeenCalled();
-        })
-    })
+        });
+    });
+
+    describe('"checkCredentials"', function () {
+        it('should return true when called with the correct credentials', function () {
+            expect(_loginService_.checkCredentials({username: 'Robin', password: 'Robin0'})).toBe(true);
+        });
+    });
 });

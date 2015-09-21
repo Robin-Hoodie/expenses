@@ -5,3 +5,7 @@ body {
 .date-glyph {
     margin-right: 20px;
 }
+
+.hover-hand:hover {
+    cursor: pointer;
+}
