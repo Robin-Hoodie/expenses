@@ -7,21 +7,36 @@
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://bootswatch.com/united/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../tmp/styles.css"/>
+    <link rel="stylesheet" href="../../bower_components/toastr/toastr.min.css"/>
 </head>
 <body class="container">
 <ng-include src="'nav/navbar.html'"></ng-include>
 <div ui-view></div>
+<!--Angular libs-->
 <script src="../../bower_components/angular/angular.js"></script>
 <script src="../../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+<!--Module-->
 <script src="app.module.js"></script>
+
+<!--Controllers-->
 <script src="registration/registration.controller.js"></script>
 <script src="nav/navbar.controller.js"></script>
 <script src="login/login.controller.js"></script>
+<script src="expenses/expenses-dashboard.controller.js"></script>
+
+<!--Services-->
 <script src="user/authentication.service.js"></script>
 <script src="login/login.service.js"></script>
 <script src="user/user.service.js"></script>
+
+<!--Directives-->
 <script src="registration/verify-password.directive.js"></script>
 <script src="registration/past-date.directive.js"></script>
+
+<!--3rd party libs-->
+<script src="../../bower_components/jquery/dist/jquery.js"></script>
+<script src="../../bower_components/toastr/toastr.min.js"></script>
 </body>
 </html>

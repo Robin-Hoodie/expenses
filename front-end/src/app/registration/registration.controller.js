@@ -12,20 +12,18 @@
     function registrationCtrl (userService, $state, $window, authenticationService) {
         var vm = this;
 
+        vm.cancel = cancel;
+        vm.emailPattern;
         vm.init = init;
         vm.open = open;
+        vm.passwordPattern;
         vm.register = register;
-        vm.cancel = cancel;
 
         init();
 
         function init () {
             vm.emailPattern =  /^(\w|\.)+@\w+\.\w{2,}(\.\w{2,})?$/i;
             vm.passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{5,20}$/;
-            vm.maxDate = new Date();
-            vm.datePickerOptions = {
-                startingDay: 1
-            }
         }
         
         function open () {

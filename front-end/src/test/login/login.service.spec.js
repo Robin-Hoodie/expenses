@@ -17,10 +17,4 @@ describe('Testing loginService', function () {
             expect(_modal_.open).toHaveBeenCalled();
         });
     });
-
-    describe('"checkCredentials"', function () {
-        it('should return true when called with the correct credentials', function () {
-            expect(_loginService_.checkCredentials({username: 'Robin', password: 'Robin0'})).toBe(true);
-        });
-    });
 });

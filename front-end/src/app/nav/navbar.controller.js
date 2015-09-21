@@ -13,14 +13,9 @@
 
         var vm = this;
 
-        vm.init = init;
+        vm.isLoggedIn = authenticationService.isLoggedIn;
         vm.openLoginWindow = openLoginWindow;
 
-        init();
-
-        function init () {
-            vm.isLoggedIn = authenticationService.isLoggedIn();
-        }
 
         function openLoginWindow () {
             loginService.openLoginWindow();

@@ -3,21 +3,21 @@ describe('Testing loginCtrl', function () {
     var _controller_,
         _modalInstance_,
         _state_,
-        _loginService_;
+        _authenticationService_;
 
     beforeEach(angular.mock.module('app.core'));
 
 
-    beforeEach(angular.mock.inject(function ($controller, $state, loginService) {
+    beforeEach(angular.mock.inject(function ($controller, $state, authenticationService) {
         _state_ = $state;
-        _loginService_ = loginService;
+        _authenticationService_ = authenticationService;
         _modalInstance_ = {
             close: jasmine.createSpy('_modalInstance_.close')
         }
         _controller_ = $controller('loginCtrl', {
             $modalInstance: _modalInstance_,
             $state: _state_,
-            loginService: _loginService_
+            authenticationService: _authenticationService_
         });
     }));
 
@@ -34,22 +34,22 @@ describe('Testing loginCtrl', function () {
             _state_.go = jasmine.createSpy('_state._.go');
         });
 
-        it('should call "_loginService_.checkCredentials"', function () {
-            _loginService_.checkCredentials = jasmine.createSpy('(_loginService_.checkCredentials');
+        it('should call "_loginService_.login"', function () {
+            _authenticationService_.login = jasmine.createSpy('_authenticationService_.login');
             _controller_.login();
-            expect(_loginService_.checkCredentials).toHaveBeenCalled();
+            expect(_authenticationService_.login).toHaveBeenCalled();
         });
 
-        it('should call "_modalInstance_.close", call "_state_.go" and set "vm.loginError" to false when checkCredentials returns true', function () {
-            _loginService_.checkCredentials = jasmine.createSpy('_loginService_.checkCredentials').and.returnValue(true);
+        it('should call "_modalInstance_.close", call "_state_.go" and set "vm.loginError" to false when login returns true', function () {
+            _authenticationService_.login = jasmine.createSpy('_authenticationService_.login').and.returnValue(true);
             _controller_.login();
             expect(_modalInstance_.close).toHaveBeenCalledWith(true);
             expect(_state_.go).toHaveBeenCalled();
             expect(_controller_.loginError).toBe(false);
         });
 
-        it('should not call "_modalInstance_.close", call "_state_.go" and set "vm.loginError" to false when checkCredentials returns false ', function () {
-            _loginService_.checkCredentials = jasmine.createSpy('_loginService_, .checkCredentials').and.returnValue(false);
+        it('should not call "_modalInstance_.close", call "_state_.go" and set "vm.loginError" to false when login returns false ', function () {
+            _authenticationService_.login = jasmine.createSpy('_authenticationService_.login').and.returnValue(false);
             _controller_.login();
             expect(_modalInstance_.close).not.toHaveBeenCalledWith(true);
             expect(_state_.go).not.toHaveBeenCalled();
