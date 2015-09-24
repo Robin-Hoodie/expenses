@@ -21,6 +21,11 @@
                         <b>Login</b>
                     </a>
                 </li>
+                <li ng-show="vm.isLoggedIn()">
+                    <a data-toggle="collapse" data-target=".navbar-collapse" ng-click="vm.logout()" class="hover-hand">
+                        <b>Logout</b>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

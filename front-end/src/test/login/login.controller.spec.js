@@ -21,14 +21,14 @@ describe('Testing loginCtrl', function () {
         });
     }));
 
-    describe('"vm.cancel"', function () {
+    describe('vm.cancel', function () {
         it('should call "_modalInstance_.close" with false', function () {
             _controller_.cancel();
             expect(_modalInstance_.close).toHaveBeenCalledWith(false);
         });
     });
 
-    describe('"vm.login"', function () {
+    describe('vm.login', function () {
 
         beforeEach(function () {
             _state_.go = jasmine.createSpy('_state._.go');
@@ -54,6 +54,18 @@ describe('Testing loginCtrl', function () {
             expect(_modalInstance_.close).not.toHaveBeenCalledWith(true);
             expect(_state_.go).not.toHaveBeenCalled();
             expect(_controller_.loginError).toBe(true);
+        });
+    });
+
+    describe('vm.passwordType', function () {
+        it('should return "text" if vm.showPassword is true ', function () {
+            _controller_.showPassword = true;
+            expect(_controller_.passwordType()).toBe('text');
+        });
+
+        it('should return "password" if vm.showPassword is false ', function () {
+            _controller_.showPassword = false;
+            expect(_controller_.passwordType()).toBe('password');
         });
     });
 

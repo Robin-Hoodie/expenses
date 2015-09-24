@@ -9,3 +9,8 @@ body {
 .hover-hand:hover {
     cursor: pointer;
 }
+
+.expenses-grid {
+    width: 1000px;
+    height: 700px;
+}

@@ -1,19 +1,21 @@
 (function () {
     'use strict';
 
-    angular.module('app.core', ['ui.router', 'ui.bootstrap']);
+    angular.module('app.core', ['ui.router', 'ui.bootstrap', 'ui.grid']);
 
     angular.module('app.core').config(configFn);
 
-    configFn.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'datepickerConfig']
+    configFn.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', 'datepickerConfig', '$provide']
 
-    function configFn($stateProvider, $locationProvider, $urlRouterProvider, datepickerConfig) {
+    function configFn($stateProvider, $locationProvider, $urlRouterProvider, datepickerConfig, $provide) {
         $locationProvider.html5Mode(true);
         $urlRouterProvider.otherwise('/');
         datepickerConfig.startingDay = 1;
         datepickerConfig.maxDate = new Date();
 
         toastr.options.positionClass = 'toast-bottom-right';
+
+        $provide.decorator('$exceptionHandler', extendExceptionHandler);
 
         //TODO: Make a real homepage
         $stateProvider.state('home', {
@@ -40,11 +42,24 @@
                 expenses: getAllExpenses
             }
         });
+    }
 
-        getAllExpenses.$inject = ['expensesService'];
+    getAllExpenses.$inject = ['expensesService'];
 
-        function getAllExpenses (expensesService) {
-            return expensesService.getAllExpenses();
+    function getAllExpenses (expensesService) {
+        return expensesService.getAllExpenses();
+    }
+
+    extendExceptionHandler.$inject = ['$delegate'];
+
+    function extendExceptionHandler ($delegate) {
+        return function (exception, cause) {
+            $delegate(exception, cause);
+            var errorData = {
+                exception: exception,
+                cause: cause
+            };
+            toastr.error(exception.message, errorData);
         }
     }
 })();

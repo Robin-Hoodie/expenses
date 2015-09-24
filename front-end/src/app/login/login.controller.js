@@ -9,8 +9,9 @@
     function loginCtrl ($modalInstance, $state, authenticationService) {
         var vm = this;
 
-        vm.init = init;
         vm.loginError = false;
+        vm.showPassword = false;
+        vm.passwordType = passwordType;
         vm.login = login;
         vm.cancel = cancel;
 
@@ -18,6 +19,10 @@
 
         function init () {
 
+        }
+
+        function cancel () {
+            $modalInstance.close(false);
         }
 
         function login () {
@@ -30,8 +35,11 @@
             }
         }
 
-        function cancel () {
-            $modalInstance.close(false);
+        function passwordType () {
+            if(vm.showPassword) {
+                return 'text';
+            }
+            return 'password';
         }
     }
 

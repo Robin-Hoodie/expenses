@@ -12,6 +12,7 @@
         return {
             getCurrentUser: getCurrentUser,
             login: login,
+            logout: logout,
             isLoggedIn: isLoggedIn
         }
 
@@ -27,6 +28,10 @@
                 return true;
             } else
                 return false;
+        }
+
+        function logout () {
+            currentUser = {};
         }
 
         function isLoggedIn() {

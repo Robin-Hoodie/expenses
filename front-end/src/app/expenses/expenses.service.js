@@ -1,18 +1,19 @@
 (function () {
     'use strict';
 
-    angular.module('app.core')
+    angular.module('app.core').constant('allExpensesUrl', 'all-expenses.json')
         .factory('expensesService', expensesService);
 
-    expensesService.$inject = ['$http'];
+    expensesService.$inject = ['$http', 'allExpensesUrl'];
 
-    function expensesService ($http) {
+    function expensesService ($http, allExpensesUrl) {
+
         return {
             getAllExpenses: getAllExpenses
         }
 
         function getAllExpenses() {
-            return $http.get('all-expenses.json').then(success, reject);
+            return $http.get(allExpensesUrl).then(success, reject);
         }
         
         function success (response) {

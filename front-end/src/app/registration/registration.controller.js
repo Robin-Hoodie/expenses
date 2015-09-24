@@ -14,7 +14,6 @@
 
         vm.cancel = cancel;
         vm.emailPattern;
-        vm.init = init;
         vm.open = open;
         vm.passwordPattern;
         vm.register = register;
